@@ -16,6 +16,8 @@ public class Task extends Model
 	public Long id;
 	@Required
 	public String label;
+	@Required
+	public int priority;
 
 	public static Finder<Long,Task> find = new Finder(
 		    Long.class, Task.class

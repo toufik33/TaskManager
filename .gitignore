@@ -13,6 +13,7 @@ tmp
 test-result
 eclipse
 server.pid
-TaskManager/project
-TaskManager/target
+TaskManagerServer/project
+TaskManagerServer/target
 .project
+TaskManagerServer/conf/evolutions
