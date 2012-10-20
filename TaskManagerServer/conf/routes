@@ -9,3 +9,8 @@ GET     /                       controllers.Application.index()
 GET     /tasks                  controllers.Application.tasks()
 POST    /tasks                  controllers.Application.newTask()
 POST    /tasks/:id/delete       controllers.Application.deleteTask(id: Long)
+
+# Projects          
+GET     /projects                  controllers.Application.projects()
+POST    /projects                  controllers.Application.newProject()
+POST    /projects/:id/delete       controllers.Application.deleteProject(id: Long)

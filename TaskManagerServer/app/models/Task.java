@@ -14,29 +14,34 @@ public class Task extends Model
 {
 	@Id
 	public Long id;
-	
+
 	@Required
 	public String label;
-	
+
 	@Required
 	public int priority;
-	
+
 	@ManyToOne
-    public Project project;
+	public Project project;
 
-	public static Finder<Long,Task> find = new Finder(
-		    Long.class, Task.class
-		  );
-	
-	public static List<Task> all() {
-		  return find.all();
-		}
 
-		public static void create(Task task) {
-		  task.save();
-		}
+	@Required @ManyToOne
+	public UserAccount user;
 
-		public static void delete(Long id) {
-		  find.ref(id).delete();
-		}
+	public static Finder<Long,Task> find = new Finder( Long.class, Task.class );
+
+	public static List<Task> findAll() 
+	{
+		return find.all();
+	}
+
+	public static void create(Task task) 
+	{
+		task.save();
+	}
+
+	public static void delete(Long id) 
+	{
+		find.ref(id).delete();
+	}
 }
