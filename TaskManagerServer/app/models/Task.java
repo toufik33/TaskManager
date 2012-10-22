@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import play.data.validation.Constraints.Required;
+import play.data.validation.Constraints.Min;
 import play.db.ebean.Model;
 
 @Entity
@@ -19,13 +20,15 @@ public class Task extends Model
 	public String label;
 
 	@Required
+	@Min(0)
 	public int priority;
 
 	@ManyToOne
 	public Project project;
 
 
-	@Required @ManyToOne
+	@Required 
+	@ManyToOne
 	public UserAccount user;
 
 	public static Finder<Long,Task> find = new Finder( Long.class, Task.class );
