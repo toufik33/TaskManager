@@ -13,7 +13,5 @@ tmp
 test-result
 eclipse
 server.pid
-TaskManagerServer/project
 TaskManagerServer/target
-.project
 TaskManagerServer/conf/evolutions
