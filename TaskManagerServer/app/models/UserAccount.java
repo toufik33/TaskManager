@@ -18,7 +18,7 @@ public class UserAccount extends Model
 	@Email @Required
 	public String mail;
 	@Required 
-	public String nickName;
+	public String nickname;
 	@Required
 	public String password;
 	
@@ -28,4 +28,41 @@ public class UserAccount extends Model
 	{
 		return find.all();
 	}
+
+	    /**
+	     * Retrieve a User from email.
+	     */
+	public static UserAccount findByEmail(String email) 
+	{
+		return find.where().eq("mail", email).findUnique();
+	}
+    
+		/**
+	     * Retrieve a User from nickname.
+	     */
+	public static UserAccount findByNickname(String nickname) 
+	{
+		return find.where().eq("nickname", nickname).findUnique();
+	}
+
+    /**
+     * Authenticate a User.
+     */
+    public static UserAccount authenticateMail(String email, String password) {
+        return find.where()
+            .eq("mail", email)
+            .eq("password", password)
+            .findUnique();
+    }
+
+/**
+     * Authenticate a User.
+     */
+    public static UserAccount authenticateNickname(String nickname, String password) {
+        return find.where()
+            .eq("nickname", nickname)
+            .eq("password", password)
+            .findUnique();
+    }
+
 }

@@ -69,4 +69,62 @@ public class Application extends Controller {
 		return redirect(routes.Application.projects());
 	}
 
+// -- Authentication
+    
+    public static class Login {
+        
+        public String identifier;
+        public String password;
+        
+        public String validate() {
+            if(UserAccount.authenticateMail(identifier, password) == null && UserAccount.authenticateNickname(identifier, password) == null) {
+                return "Invalid user or password";
+            }
+            return null;
+        }
+        
+    }
+
+    /**
+     * Login page.
+     */
+    public static Result login() {
+        return ok(
+            login.render(form(Login.class))
+        );
+    }
+    
+    /**
+     * Handle login form submission.
+     */
+    public static Result authenticate() {
+        Form<Login> loginForm = form(Login.class).bindFromRequest();
+        if(loginForm.hasErrors()) {
+            return badRequest(login.render(loginForm));
+        } else {
+	    String identifier = loginForm.get().identifier ;
+		UserAccount currentUser ;
+	if(identifier.contains("@"))
+	{
+		currentUser = UserAccount.findByEmail(identifier);
+	}
+	else currentUser = UserAccount.findByNickname(identifier);
+            session("nickname", currentUser.nickname);
+            return redirect(
+                routes.Application.index()
+            );
+        }
+    }
+
+    /**
+     * Logout and clean the session.
+     */
+    public static Result logout() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(
+            routes.Application.login()
+        );
+    }
+
 }
