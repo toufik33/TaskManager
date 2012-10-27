@@ -1,0 +1,8 @@
+# Users
+
+users:
+
+    - !!models.UserAccount
+        mail:      	antoine@sample.com
+        nickname:   	natoine
+        password:   	secret
