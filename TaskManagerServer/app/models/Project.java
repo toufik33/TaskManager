@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class Project extends Model
 	public String label;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
 	public List<Task> tasks;
-	@Temporal( javax.persistence.TemporalType.DATE )
+	@Temporal( TemporalType.DATE )
 	public Date creationDate = new Date();
 	
 	public static Finder<Long,Project> find = new Finder( Long.class, Project.class );
