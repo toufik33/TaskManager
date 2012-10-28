@@ -2,7 +2,8 @@
 
 users:
 
-    - !!models.UserAccount
-        mail:      	antoine@sample.com
-        nickname:   	natoine
-        password:   	secret
+  - !!models.UserAccount
+        id:       1
+        mail:     antoine@sample.com
+        nickname: natoine
+        password: secret

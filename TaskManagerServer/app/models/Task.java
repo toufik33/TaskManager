@@ -26,7 +26,6 @@ public class Task extends Model
 	@ManyToOne
 	public Project project;
 
-
 	@Required 
 	@ManyToOne
 	public UserAccount user;

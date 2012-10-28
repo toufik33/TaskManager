@@ -5,7 +5,7 @@
 @main("See All Tasks") {
     
  <h1>@tasks.size() task(s)</h1>
-    
+Bonjour : @session.get("nickname")
     <ul>
         @for(task <- tasks) {
             <li>
@@ -25,13 +25,13 @@
         @inputText(taskForm("label"))
         @inputText(taskForm("priority"))
         Project :
-        <select id="project" name="project">
+        <select id="project_id" name="project_id">
         	@for(project <- projects) {
         		<option value="@project.id">@project.label</option>
         	}
         </select>
         User : 
-        <select id="user" name="user">
+        <select id="user_id" name="user_id">
         	@for(user <- users) {
         		<option value="@user.id">@user.nickname</option>
         	}
