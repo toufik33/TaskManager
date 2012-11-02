@@ -10,7 +10,9 @@ import models.Project;
 import models.Task;
 import models.UserAccount;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application extends Controller {
 
@@ -23,20 +25,29 @@ public class Application extends Controller {
 
 	public static Result tasks() {
 		List<Task> ttasks = Task.findAll();
-		for(Task task:ttasks) System.out.println("task :" + task.id + " project_id " + task.project.id + " user_id " + task.user.id);		
+		for(Task task:ttasks) System.out.println("task :" + task.id + " project_id " + task.project.id + " user_id " + task.user.id);	
+		/*Map<Long , Project> projects = new HashMap<Long, Project>();
+		List<Project> projectList = Project.findAll();
+		for(Project project: projectList)
+		{
+			projects.put(project.id, project);
+		}*/
 		return ok(
-				tasks.render(Task.findAll(), taskForm, UserAccount.findAll(), Project.findAll())
+				//tasks.render(Task.findAll(), taskForm, UserAccount.findAll(), projects)
+				//tasks.render(Task.findAll(), taskForm, UserAccount.findAll(), Project.findAll())
+				//tasks.render(Task.findAll(), taskForm, UserAccount.findAll())
+				tasks.render(Task.findAll(), taskForm)
 				//views.html.index.render(Task.findAll(), taskForm, UserAccount.findAll())
 				);
 	}
 
 	public static Result newTask() {
 		Form<Task> filledForm = taskForm.bindFromRequest();
-		System.out.println("FilledForm : " + filledForm);
 		if(filledForm.hasErrors()) {
 			return badRequest(
-					tasks.render(Task.findAll(), filledForm, UserAccount.findAll(), Project.findAll())
-					//views.html.index.render(Task.findAll(), filledForm, UserAccount.findAll())
+					//tasks.render(Task.findAll(), filledForm, UserAccount.findAll(), Project.findAll())
+					//tasks.render(Task.findAll(), filledForm, UserAccount.findAll())
+					tasks.render(Task.findAll(), filledForm)
 					);
 		} else {
 			Task.create(filledForm.get());

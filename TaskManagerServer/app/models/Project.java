@@ -1,6 +1,8 @@
 package models;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +16,9 @@ import java.util.Date;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
+
+
+
 
 @Entity
 public class Project extends Model
@@ -34,6 +39,15 @@ public class Project extends Model
 	{
 		return find.all();
 	}
+	
+	 public static Map<String,String> options() {
+	        List<Project> projects = findAll();
+	        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+	        for(Project p: projects) {
+	            options.put(p.id.toString(), p.label);
+	        }
+	        return options;
+	    }
 	
 	public static void delete(Long id) 
 	{

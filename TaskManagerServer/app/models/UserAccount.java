@@ -1,6 +1,8 @@
 package models;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,6 +31,15 @@ public class UserAccount extends Model
 		return find.all();
 	}
 
+	public static Map<String,String> options() {
+        List<UserAccount> users = findAll();
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(UserAccount u: users) {
+            options.put(u.id.toString(), u.nickname);
+        }
+        return options;
+    }
+	
 	    /**
 	     * Retrieve a User from email.
 	     */

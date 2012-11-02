@@ -1,4 +1,4 @@
-@(tasks: List[Task], taskForm: Form[Task], users: List[UserAccount], projects: List[Project])
+@(tasks: List[Task], taskForm: Form[Task])
 
 @import helper._
 
@@ -9,7 +9,7 @@ Bonjour : @session.get("nickname")
     <ul>
         @for(task <- tasks) {
             <li>
-                @task.label priority : @task.priority person : @task.user.nickname
+                @task.label priority : @task.priority person : @task.user.nickname project : @task.project.label
                 
                 @form(routes.Application.deleteTask(task.id)) {
                     <input type="submit" value="Delete">
@@ -22,20 +22,23 @@ Bonjour : @session.get("nickname")
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("label"))
+        @inputText(taskForm("label"), '_label -> "Nom de la tâche")
         @inputText(taskForm("priority"))
         Project :
-        <select id="project_id" name="project_id">
-        	@for(project <- projects) {
-        		<option value="@project.id">@project.label</option>
-        	}
-        </select>
+        @select(taskForm("project.id"), 
+        		options(Project.options()),
+        		'_default -> "--- Choose a project ---",
+                '_label -> "Project",
+                '_error -> taskForm("project").error.map(_.withMessage("Please select your project"))
+        		)
+  
         User : 
-        <select id="user_id" name="user_id">
-        	@for(user <- users) {
-        		<option value="@user.id">@user.nickname</option>
-        	}
-        </select>
+        @select(taskForm("user.id"), 
+        		options(UserAccount.options()),
+        		'_default -> "--- Choose a user ---",
+                '_label -> "User",
+                '_error -> taskForm("user").error.map(_.withMessage("Please select your userAccount"))
+        		)
         <input type="submit" value="Create">
         
     }   
