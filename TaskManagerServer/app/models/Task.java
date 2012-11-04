@@ -14,21 +14,71 @@ import play.db.ebean.Model;
 public class Task extends Model 
 {
 	@Id
-	public Long id;
+	private Long id;
 
 	@Required
-	public String label;
+	private String label;
 
 	@Required
 	@Min(0)
-	public int priority;
+	private Integer priority;
 
 	@ManyToOne
-	public Project project;
+	private Project project;
 
 	@Required 
 	@ManyToOne
-	public UserAccount user;
+	private UserAccount user;
+
+	public Long getId()
+	{
+		return id ;
+	}
+
+	public void setId(Long _id)
+	{
+		id = _id ;
+	}
+
+	public String getLabel()
+	{
+		return label;
+	}
+
+	public void setLabel(String _label)
+	{
+		label = _label ;
+	}
+
+	public Integer getPriority()
+	{
+		return priority ;
+	}
+
+	public void setPriority(Integer _priority)
+	{
+		priority = _priority ;
+	}
+
+	public Project getProject()
+	{
+		return project ;
+	}
+
+	public void setProject(Project _project)
+	{
+		project = _project ;
+	}	
+
+	public UserAccount getUser()
+	{
+		return user ;
+	}
+
+	public void setUser(UserAccount _user)
+	{
+		user = _user ;
+	}
 
 	public static Finder<Long,Task> find = new Finder( Long.class, Task.class );
 

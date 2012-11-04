@@ -18,14 +18,54 @@ import play.db.ebean.Model.Finder;
 public class UserAccount extends Model
 {
 	@Id
-	public Long id;
+	private Long id;
 	@Email @Required
-	public String mail;
+	private String mail;
 	@Required @Column(unique=true)
-	public String nickname;
+	private String nickname;
 	@Required
-	public String password;
+	private String password;
 	
+	public Long getId()
+	{
+		return id ;
+	}
+
+	public void setId(Long _id)
+	{
+		id = _id ;
+	}
+
+	public String getMail()
+	{
+		return mail ;
+	}	
+
+	public void setMail(String _mail)
+	{
+		mail = _mail ;
+	}
+
+	public String getNickname()
+	{
+		return nickname ;
+	}	
+
+	public void setNickname(String _nickname)
+	{
+		nickname = _nickname ;
+	}
+
+	public String getPassword()
+	{
+		return password ;
+	}	
+
+	public void setPassword(String _password)
+	{
+		password = _password ;
+	}
+
 	public static Finder<Long,UserAccount> find = new Finder( Long.class, UserAccount.class );
 	
 	public static List<UserAccount> findAll()

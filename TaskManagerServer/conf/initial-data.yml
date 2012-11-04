@@ -8,18 +8,18 @@ users:
         nickname: natoine
         password: secret
 
-projects:
+#projects:
+#
+#  - !!models.Project
+#        id:       1
+#        label:     projet de base
 
-  - !!models.Project
-        id:       1
-        label:     projet de base
-
-tasks:
-  - !!models.Task
-        id:       1
-        label:     Tache de base
-        priority: 0
-        project:    !!models.Project
-                        id: 1
-        user:    !!models.UserAccount
-                        id: 1
+#tasks:
+#  - !!models.Task
+#        id:       1
+#        label:     Tache de base
+#        priority: 0
+#        project:    !!models.Project
+#                        id: 1
+#        user:    !!models.UserAccount
+#                        id: 1

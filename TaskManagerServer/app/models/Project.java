@@ -25,14 +25,44 @@ public class Project extends Model
 {
 
 	@Id
-	public Long id;
+	private Long id;
 	@Required
-	public String label;
+	private String label;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
-	public List<Task> tasks;
+	private List<Task> tasks;
 	@Temporal( TemporalType.DATE )
-	public Date creationDate = new Date();
+	private Date creationDate = new Date();
 	
+	public Long getId()
+	{
+		return id;
+	}
+
+	public void setId(Long _id)
+	{
+		id = _id ;
+	}
+
+	public String getLabel()
+	{
+		return label;
+	}
+
+	public void setLabel(String _label)
+	{
+		label = _label;
+	}
+
+	public List<Task> getTasks()
+	{
+		return tasks;
+	}
+
+	public Date getCreationDate()
+	{
+		return creationDate ;
+	}
+
 	public static Finder<Long,Project> find = new Finder( Long.class, Project.class );
 
 	public static List<Project> findAll() 

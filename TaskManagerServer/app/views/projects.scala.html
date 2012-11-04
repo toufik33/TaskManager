@@ -9,9 +9,9 @@
     <ul>
         @for(project <- projects) {
             <li>
-                @project.label Début du projet : @project.creationDate
+                @project.getLabel Début du projet : @project.getCreationDate
                 
-                @form(routes.Application.deleteProject(project.id)) {
+                @form(routes.Application.deleteProject(project.getId)) {
                     <input type="submit" value="Delete">
                 }
             </li>

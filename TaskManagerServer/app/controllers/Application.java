@@ -25,13 +25,6 @@ public class Application extends Controller {
 
 	public static Result tasks() {
 		List<Task> ttasks = Task.findAll();
-		for(Task task:ttasks) System.out.println("task :" + task.id + " project_id " + task.project.id + " user_id " + task.user.id);	
-		/*Map<Long , Project> projects = new HashMap<Long, Project>();
-		List<Project> projectList = Project.findAll();
-		for(Project project: projectList)
-		{
-			projects.put(project.id, project);
-		}*/
 		return ok(
 				//tasks.render(Task.findAll(), taskForm, UserAccount.findAll(), projects)
 				//tasks.render(Task.findAll(), taskForm, UserAccount.findAll(), Project.findAll())
@@ -125,7 +118,7 @@ public class Application extends Controller {
 		currentUser = UserAccount.findByEmail(identifier);
 	}
 	else currentUser = UserAccount.findByNickname(identifier);
-            session("nickname", currentUser.nickname);
+            session("nickname", currentUser.getNickname());
             return redirect(
                 routes.Application.index()
             );
