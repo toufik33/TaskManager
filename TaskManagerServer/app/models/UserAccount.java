@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.Id;
 
 import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.Required;
+
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -19,7 +21,7 @@ public class UserAccount extends Model
 	public Long id;
 	@Email @Required
 	public String mail;
-	@Required 
+	@Required @Column(unique=true)
 	public String nickname;
 	@Required
 	public String password;
