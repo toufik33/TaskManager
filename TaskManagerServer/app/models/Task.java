@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -16,6 +18,7 @@ import play.db.ebean.Model;
 public class Task extends Model 
 {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@Required
